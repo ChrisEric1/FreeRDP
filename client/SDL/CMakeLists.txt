@@ -38,15 +38,15 @@ include(GNUInstallDirsWrapper)
    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
    if (NOT FREEBSD)
      set(CMAKE_INSTALL_RPATH "\$ORIGIN/../${CMAKE_INSTALL_LIBDIR}:\$ORIGIN/..")
-     option(WITH_ADD_PLUGIN_TO_RPATH "Add extension and plugin path to RPATH" OFF)
+     option(WITH_ADD_PLUGIN_TO_RPATH "Add extension and plugin path to RPATH" ON)
      if (WITH_ADD_PLUGIN_TO_RPATH)
        set(CMAKE_INSTALL_RPATH "\$ORIGIN/../${FREERDP_EXTENSION_REL_PATH}:\$ORIGIN/../${FREERDP_PLUGIN_PATH}:${CMAKE_INSTALL_RPATH}")
      endif()
    endif()
  endif(APPLE)
 
-option(WITH_DEBUG_SDL_EVENTS "[dangerous, not for release builds!] Debug SDL events" OFF)
-option(WITH_DEBUG_SDL_KBD_EVENTS "[dangerous, not for release builds!] Debug SDL keyboard events" OFF)
+option(WITH_DEBUG_SDL_EVENTS "[dangerous, not for release builds!] Debug SDL events" ON)
+option(WITH_DEBUG_SDL_KBD_EVENTS "[dangerous, not for release builds!] Debug SDL keyboard events" ON)
 
 if (WITH_DEBUG_SDL_EVENTS)
 	add_definitions(-DWITH_DEBUG_SDL_EVENTS)
@@ -55,20 +55,20 @@ if (WITH_DEBUG_SDL_KBD_EVENTS)
 	add_definitions(-DWITH_DEBUG_SDL_KBD_EVENTS)
 endif()
 
-find_package(SDL2 REQUIRED)
+#find_package(SDL2 RECOMMENDED)
 include_directories(${SDL2_INCLUDE_DIR})
 include_directories(${SDL2_INCLUDE_DIRS})
 
 # Here we add dependencies for stand alone builds.
 # Only add these if not build within FreeRDP source tree
 if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
-	find_package(WinPR 3 REQUIRED)
+	find_package(WinPR 3 RECOMMENDED)
 	include_directories(${WinPR_INCLUDE_DIR})
 
-	find_package(FreeRDP 3 REQUIRED)
+	find_package(FreeRDP 3 RECOMMENDED)
 	include_directories(${FreeRDP_INCLUDE_DIR})
 
-	find_package(FreeRDP-Client 3 REQUIRED)
+	find_package(FreeRDP-Client 3 RECOMMENDED)
 	include_directories(${FreeRDP-Client_INCLUDE_DIR})
 endif()
 

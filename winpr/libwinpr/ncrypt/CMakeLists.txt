@@ -19,7 +19,7 @@ if (PKCS11_FOUND)
 	winpr_include_directory_add(${PKCS11_INCLUDE_DIR})
 	winpr_library_add_public(${PKCS11_LIBRARY})
 
-	option(WITH_OPENSC_PKCS11_LINKED "Directly link opensc-pkcs11" OFF)
+	option(WITH_OPENSC_PKCS11_LINKED "Directly link opensc-pkcs11" ON)
 	if (WITH_OPENSC_PKCS11_LINKED)
 
 		# opensc-pkcs11 is installed without any library prefix.
@@ -29,7 +29,7 @@ if (PKCS11_FOUND)
 		find_library(OPENSC_PKCS11
 			NAMES opensc-pkcs11
 			PATH_SUFFIXES pkcs11
-			REQUIRED)
+			RECOMMENDED)
 		set(CMAKE_FIND_LIBRARY_PREFIXES ${backup})
 
 		winpr_definition_add(-DWITH_OPENSC_PKCS11_LINKED)

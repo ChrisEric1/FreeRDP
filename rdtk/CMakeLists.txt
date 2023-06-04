@@ -42,7 +42,7 @@ if (NOT FREERDP_UNIFIED_BUILD)
 
 	set(WINPR_VERSION_MAJOR 3)
 	option(BUILD_SHARED_LIBS "Build shared libraries" ON)
-    option(EXPORT_ALL_SYMBOLS "Export all symbols form library" OFF)
+    option(EXPORT_ALL_SYMBOLS "Export all symbols form library" ON)
 	option(BUILD_TESTING "Build library unit tests" ON)
 	option(WITH_LIBRARY_VERSIONING "Use library version triplet" ON)
 
@@ -95,7 +95,7 @@ if (FREERDP_UNIFIED_BUILD)
 	include_directories(${PROJECT_SOURCE_DIR}/winpr/include)
 	include_directories(${PROJECT_BINARY_DIR}/winpr/include)
 else()
-	find_package(WinPR 3 REQUIRED)
+	find_package(WinPR 3 RECOMMENDED)
 	include_directories(${WinPR_INCLUDE_DIR})
 endif()
 

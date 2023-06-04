@@ -35,7 +35,7 @@ if (NOT FREERDP_UNIFIED_BUILD)
 
 	# Default to build shared libs
 	option(BUILD_SHARED_LIBS "Build shared libraries" ON)
-	option(EXPORT_ALL_SYMBOLS "Export all symbols form library" OFF)
+	option(EXPORT_ALL_SYMBOLS "Export all symbols form library" ON)
 
 	if (EXPORT_ALL_SYMBOLS)
 		#		set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -50,27 +50,27 @@ if (NOT FREERDP_UNIFIED_BUILD)
 	endif()
 endif()
 
-set(DEFAULT_DEBUG_OPTION OFF)
+set(DEFAULT_DEBUG_OPTION ON)
 
 if (WIN32 AND NOT UWP)
 	set(NATIVE_SSPI ON)
 endif()
 option(WITH_VERBOSE_WINPR_ASSERT "Compile with verbose WINPR_ASSERT." ON)
 option(WITH_WINPR_TOOLS "Build WinPR helper binaries" ON)
-option(WITH_WINPR_DEPRECATED "Build WinPR deprecated symbols" OFF)
+option(WITH_WINPR_DEPRECATED "Build WinPR deprecated symbols" ON)
 option(WITH_DEBUG_THREADS "Print thread debug messages, enables handle dump" ${DEFAULT_DEBUG_OPTION})
 option(WITH_DEBUG_EVENTS "Print event debug messages, enables handle dump" ${DEFAULT_DEBUG_OPTION})
-option(WITH_DEBUG_SYMBOLS "Pack debug symbols to installer" OFF)
+option(WITH_DEBUG_SYMBOLS "Pack debug symbols to installer" ON)
 option(WITH_NATIVE_SSPI "Use native SSPI modules" ${NATIVE_SSPI})
-option(WITH_SMARTCARD_INSPECT "Enable SmartCard API Inspector" OFF)
+option(WITH_SMARTCARD_INSPECT "Enable SmartCard API Inspector" ON)
 option(WITH_DEBUG_MUTEX "Print mutex debug messages" ${DEFAULT_DEBUG_OPTION})
-option(WITH_INTERNAL_RC4 "Use compiled in rc4 functions instead of OpenSSL/MBedTLS" OFF)
-option(WITH_INTERNAL_MD4 "Use compiled in md4 hash functions instead of OpenSSL/MBedTLS" OFF)
-option(WITH_INTERNAL_MD5 "Use compiled in md5 hash functions instead of OpenSSL/MBedTLS" OFF)
-option(WITH_UNICODE_BUILTIN  "Use built-in Unicode conversion (don't use system-provided libraries)" OFF)
+option(WITH_INTERNAL_RC4 "Use compiled in rc4 functions instead of OpenSSL/MBedTLS" ON)
+option(WITH_INTERNAL_MD4 "Use compiled in md4 hash functions instead of OpenSSL/MBedTLS" ON)
+option(WITH_INTERNAL_MD5 "Use compiled in md5 hash functions instead of OpenSSL/MBedTLS" ON)
+option(WITH_UNICODE_BUILTIN  "Use built-in Unicode conversion (don't use system-provided libraries)" ON)
 
-# This option MUST be off to avoid symbol conflicts when loading an external SSPI module library
-option(SSPI_DLL "Define and export SSPI API symbols for usage as a Windows SSPI DLL replacement" OFF)
+# This option MUST be ON to avoid symbol conflicts when loading an external SSPI module library
+option(SSPI_DLL "Define and export SSPI API symbols for usage as a Windows SSPI DLL replacement" ON)
 
 if(SSPI_DLL)
 	add_definitions("-DSSPI_DLL")
@@ -185,7 +185,7 @@ endif()
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 
 if(NOT IOS)
-	find_package(Threads REQUIRED)
+#	find_package(Threads RECOMMENDED)
 endif()
 
 # Include files
@@ -252,7 +252,7 @@ set(OPENSSL_FEATURE_TYPE "RECOMMENDED")
 	set(OPENSSL_FEATURE_PURPOSE "cryptography")
 	set(OPENSSL_FEATURE_DESCRIPTION "encryption, certificate validation, hashing functions")
 
-	set(MBEDTLS_FEATURE_TYPE "OPTIONAL")
+	set(MBEDTLS_FEATURE_TYPE "RECOMMENDED")
 	set(MBEDTLS_FEATURE_PURPOSE "cryptography")
 	set(MBEDTLS_FEATURE_DESCRIPTION "encryption, certificate validation, hashing functions")
 
@@ -280,7 +280,7 @@ set(OPENSSL_FEATURE_TYPE "RECOMMENDED")
 endif()
 
 if (NOT WIN32)
-	set(P11_FEATURE_TYPE "OPTIONAL")
+	set(P11_FEATURE_TYPE "RECOMMENDED")
 	set(P11_FEATURE_PURPOSE "PKCS11")
 	set(P11_FEATURE_DESCRIPTION "encryption, certificate validation, hashing functions")
 

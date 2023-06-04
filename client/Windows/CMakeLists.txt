@@ -65,7 +65,7 @@ if(WITH_WINDOWS_CERT_STORE)
   add_definitions("-DWITH_WINDOWS_CERT_STORE")
 endif()
 
-option(WITH_WIN_CONSOLE "Build ${MODULE_NAME} with console support" OFF)
+option(WITH_WIN_CONSOLE "Build ${MODULE_NAME} with console support" ON)
 if(WITH_WIN_CONSOLE)
   add_definitions("-DWITH_WIN_CONSOLE")
   set(WIN32_GUI_FLAG "")

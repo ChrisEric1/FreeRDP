@@ -55,7 +55,7 @@ set(${MODULE_PREFIX}_SRCS
 	shadow.h)
 
 if (NOT FREERDP_UNIFIED_BUILD)
-	find_package(rdtk 0 REQUIRED)
+	find_package(rdtk 0 RECOMMENDED)
 	include_directories(${RDTK_INCLUDE_DIR})
 else()
 	if (NOT WITH_RDTK)

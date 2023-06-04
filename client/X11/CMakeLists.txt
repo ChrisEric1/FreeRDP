@@ -86,7 +86,7 @@ set(${MODULE_PREFIX}_LIBS
 	${X11_LIBRARIES})
 
 if(WITH_MANPAGES)
-	find_program(XSLTPROC_EXECUTABLE NAMES xsltproc REQUIRED)
+	find_program(XSLTPROC_EXECUTABLE NAMES xsltproc RECOMMENDED)
 	if (NOT DOCBOOKXSL_FOUND)
 		message(FATAL_ERROR "docbook xsl not found but required for manpage generation")
 	endif()
@@ -132,7 +132,7 @@ if(WITH_MANPAGES)
 	install_freerdp_man(${CMAKE_CURRENT_BINARY_DIR}/xfreerdp.1 1)
 endif(WITH_MANPAGES)
 
-set(XSHM_FEATURE_TYPE "REQUIRED")
+set(XSHM_FEATURE_TYPE "RECOMMENDED")
 set(XSHM_FEATURE_PURPOSE "X11 shared memory")
 set(XSHM_FEATURE_DESCRIPTION "X11 shared memory extension")
 

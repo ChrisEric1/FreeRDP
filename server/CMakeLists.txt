@@ -18,8 +18,8 @@
 # Servers
 include(CMakeDependentOption)
 
-CMAKE_DEPENDENT_OPTION(WITH_SHADOW "Compile with shadow server" ON	"WITH_SERVER" OFF)
-CMAKE_DEPENDENT_OPTION(WITH_PROXY "Compile with proxy server" ON	"WITH_SERVER" OFF)
+CMAKE_DEPENDENT_OPTION(WITH_SHADOW "Compile with shadow server" ON	"WITH_SERVER" ON)
+CMAKE_DEPENDENT_OPTION(WITH_PROXY "Compile with proxy server" ON	"WITH_SERVER" ON)
 
 add_subdirectory(common)
 if (WITH_SHADOW)

@@ -55,19 +55,19 @@ set(${MODULE_PREFIX}_SRCS
 	sspi.c
 	sspi.h)
 
-set(KRB5_DEFAULT OFF)
+set(KRB5_DEFAULT ON)
 if (NOT WIN32 AND NOT ANDROID AND NOT IOS AND NOT APPLE)
 	set(KRB5_DEFAULT ON)
 endif()
 
-option(WITH_DEBUG_SCHANNEL "Compile support for SCHANNEL debug" OFF)
+option(WITH_DEBUG_SCHANNEL "Compile support for SCHANNEL debug" ON)
 if (WITH_DEBUG_SCHANNEL)
 	winpr_definition_add("-DWITH_DEBUG_SCHANNEL")
 endif()
 
 option(WITH_KRB5 "Compile support for kerberos authentication." ${KRB5_DEFAULT})
 if (WITH_KRB5)
-	find_package(KRB5 REQUIRED)
+#	find_package(KRB5 RECOMMENDED)
 
 	list(APPEND ${MODULE_PREFIX}_KERBEROS_SRCS
 	    Kerberos/krb5glue_mit.c
@@ -93,7 +93,7 @@ if (WITH_KRB5)
 	endif()
 
 	include(CMakeDependentOption)
-	CMAKE_DEPENDENT_OPTION(WITH_KRB5_NO_NTLM_FALLBACK "Do not fall back to NTLM if no kerberos ticket available" OFF "WITH_KRB5" OFF)
+	CMAKE_DEPENDENT_OPTION(WITH_KRB5_NO_NTLM_FALLBACK "Do not fall back to NTLM if no kerberos ticket available" ON "WITH_KRB5" ON)
 	if (WITH_KRB5_NO_NTLM_FALLBACK)
 	    add_definitions("-DWITH_KRB5_NO_NTLM_FALLBACK")
 	endif()

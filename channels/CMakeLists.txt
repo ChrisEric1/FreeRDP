@@ -55,7 +55,7 @@ macro(define_channel_options)
   set(CHANNEL_OPTION_DOC "Build ${CHANNEL_NAME} ${CHANNEL_TYPE} channel")
 
   if ("${CHANNEL_TYPE}" STREQUAL "DYNAMIC")
-    CMAKE_DEPENDENT_OPTION(${CHANNEL_OPTION} "${CHANNEL_OPTION_DOC}" ${CHANNEL_DEFAULT} "CHANNEL_DRDYNVC" OFF)
+    CMAKE_DEPENDENT_OPTION(${CHANNEL_OPTION} "${CHANNEL_OPTION_DOC}" ${CHANNEL_DEFAULT} "CHANNEL_DRDYNVC" ON)
   else()
     option(${CHANNEL_OPTION} "${CHANNEL_OPTION_DOC}" ${CHANNEL_DEFAULT})
   endif()
@@ -68,7 +68,7 @@ macro(define_channel_client_options _channel_client_default)
   set(CHANNEL_CLIENT_OPTION_DOC "Build ${CHANNEL_NAME} ${CHANNEL_TYPE} channel client")
 
   CMAKE_DEPENDENT_OPTION(${CHANNEL_CLIENT_OPTION} "${CHANNEL_CLIENT_OPTION_DOC}"
-    ${_channel_client_default} "${CHANNEL_OPTION}" OFF)
+    ${_channel_client_default} "${CHANNEL_OPTION}" ON)
 endmacro(define_channel_client_options)
 
 macro(define_channel_server_options _channel_server_default)
@@ -77,7 +77,7 @@ macro(define_channel_server_options _channel_server_default)
   set(CHANNEL_SERVER_OPTION_DOC "Build ${CHANNEL_NAME} ${CHANNEL_TYPE} channel server")
 
   CMAKE_DEPENDENT_OPTION(${CHANNEL_SERVER_OPTION} "${CHANNEL_SERVER_OPTION_DOC}"
-    ${_channel_server_default} "${CHANNEL_OPTION}" OFF)
+    ${_channel_server_default} "${CHANNEL_OPTION}" ON)
 endmacro(define_channel_server_options)
 
 macro(define_channel _channel_name)

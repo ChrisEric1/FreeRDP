@@ -40,7 +40,7 @@ if (FREERDP_UNIFIED_BUILD)
 	include_directories(${PROJECT_SOURCE_DIR}/uwac/include)
 	include_directories(${PROJECT_BINARY_DIR}/uwac/include)
 else()
-	find_package(uwac 0 REQUIRED)
+	find_package(uwac 0 RECOMMENDED)
 	include_directories(${UWAC_INCLUDE_DIR})
 endif()
 

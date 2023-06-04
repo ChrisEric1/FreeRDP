@@ -83,10 +83,10 @@ macro (freerdp_definition_add)
 endmacro()
 
 if (WITH_SWSCALE)
-    find_package(SWScale REQUIRED)
+#    find_package(SWScale RECOMMENDED)
 endif(WITH_SWSCALE)
 if (WITH_CAIRO)
-    find_package(Cairo REQUIRED)
+#    find_package(Cairo RECOMMENDED)
 endif(WITH_CAIRO)
 
 # Prefer SWScale over Cairo, both at the same time are not possible.
@@ -261,7 +261,7 @@ endif()
 if(ANDROID AND WITH_MEDIACODEC)
     list(APPEND CODEC_SRCS codec/h264_mediacodec.c)
 
-		find_library(MEDIACODEC mediandk REQUIRED)
+		find_library(MEDIACODEC mediandk RECOMMENDED)
 		freerdp_library_add(${MEDIACODEC})
 endif()
 

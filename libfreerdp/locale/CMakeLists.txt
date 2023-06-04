@@ -53,7 +53,7 @@ if(APPLE AND (NOT IOS))
 endif()
 
 if (APPLE)
-        FIND_LIBRARY(ç CoreFoundation REQUIRED)
+        FIND_LIBRARY(ç CoreFoundation RECOMMENDED)
         freerdp_library_add(${CORE_FOUNDATION})
 endif()
 
